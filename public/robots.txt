@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+# TODO before launch: replace the host with the live domain (and keep it in sync in nuxt.config).
+Sitemap: https://cakeamiga.ph/sitemap.xml

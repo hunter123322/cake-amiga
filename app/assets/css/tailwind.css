@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gradient-to-b from-amber-50 to-rose-50 text-slate-800 antialiased;
+  }
+
+  button {
+    touch-action: manipulation;
+  }
+
+  /* Anchor targets (e.g. the menu jump links) clear the sticky header. */
+  :target {
+    scroll-margin-top: 5rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.slate.900');
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Translucent chrome becomes solid when the user asks for less transparency. */
+  @media (prefers-reduced-transparency: reduce) {
+    .backdrop-blur-xl,
+    .backdrop-blur {
+      backdrop-filter: none !important;
+      background-color: rgb(255 255 255 / 0.98) !important;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .backdrop-blur-xl,
+    .backdrop-blur {
+      backdrop-filter: none !important;
+      background-color: #fff !important;
+    }
+  }
+}
+
+@layer components {
+  /* Search inputs get a clear button in WebKit; keep it out of the way. */
+  input[type='search']::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+}
