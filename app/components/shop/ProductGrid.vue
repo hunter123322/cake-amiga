@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import type { CategorySlug, ShopProduct } from '~/types/shop'
+import type { RouteLocationRaw } from 'vue-router'
 
 const props = defineProps<{
   items: ShopProduct[]
   total: number
   hasMore: boolean
+  /**
+   * Link to the next page of the same view. It has to be a real `<a href>`: the
+   * grid paginates past everything the first page can show, and a crawler cannot
+   * press a button.
+   */
+  moreTo?: RouteLocationRaw
   category: CategorySlug
   isFiltered: boolean
 }>()
 
-const emit = defineEmits<{ 'load-more': []; reset: [] }>()
+const emit = defineEmits<{ reset: [] }>()
 
 /** Only the first row is above the fold, so only the first four images load eagerly. */
 const EAGER = 4
@@ -27,6 +34,7 @@ const EAGER = 4
         :key="product.id"
         :product="product"
         :priority="index < EAGER && !isFiltered"
+        heading-level="h2"
       />
     </div>
 
@@ -43,13 +51,13 @@ const EAGER = 4
       @action="emit('reset')"
     />
 
-    <button
+    <NuxtLink
       v-if="hasMore"
-      type="button"
-      class="mx-auto h-12 rounded-full bg-white px-6 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition active:scale-[0.98] hover:text-slate-900 hover:ring-slate-300"
-      @click="emit('load-more')"
+      :to="moreTo"
+      rel="next"
+      class="mx-auto inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition active:scale-[0.98] hover:text-slate-900 hover:ring-slate-300"
     >
       Load {{ Math.min(total - items.length, 12) }} more
-    </button>
+    </NuxtLink>
   </div>
 </template>

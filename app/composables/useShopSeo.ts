@@ -7,8 +7,13 @@ export interface SeoInput {
   path: string
   image?: string
   type?: 'website' | 'article' | 'product'
+  /** Overrides the default `index, follow` behaviour in the rendered `meta[name=robots]`. */
+  robots?: string
   jsonLd?: Record<string, unknown>[]
 }
+
+/** Pages with no photography of their own still need a social preview. */
+export const DEFAULT_SOCIAL_IMAGE = '/img/cake/red_rose_bdayCake.webp'
 
 export function useSiteUrl(): string {
   if (import.meta.client) return window.location.origin
@@ -22,7 +27,7 @@ export function useSiteUrl(): string {
 export function useShopSeo(input: SeoInput) {
   const origin = useSiteUrl()
   const canonical = `${origin}${input.path}`
-  const image = input.image ? `${origin}${input.image}` : undefined
+  const image = `${origin}${input.image ?? DEFAULT_SOCIAL_IMAGE}`
   // og:type has no product value; Open Graph only distinguishes website/article here.
   const ogType = input.type === 'article' ? 'article' : 'website'
 
@@ -35,11 +40,14 @@ export function useShopSeo(input: SeoInput) {
     ogUrl: canonical,
     ogSiteName: SHOP_INFO.name,
     ogLocale: 'en_PH',
-    ...(image ? { ogImage: image, ogImageWidth: 1086, ogImageHeight: 1357 } : {}),
-    twitterCard: image ? 'summary_large_image' : 'summary',
+    ogImage: image,
+    ogImageWidth: 1086,
+    ogImageHeight: 1357,
+    twitterCard: 'summary_large_image',
     twitterTitle: input.title,
     twitterDescription: input.description,
-    ...(image ? { twitterImage: image } : {}),
+    twitterImage: image,
+    ...(input.robots ? { robots: input.robots } : {}),
   })
 
   useHead({
@@ -75,7 +83,7 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     hasMap: SHOP_INFO.mapLink,
     openingHours: SHOP_INFO.hours.map((entry) => `${entry.days} ${entry.open}`),
     sameAs: SHOP_INFO.socials.map((social) => social.url),
-    servesCuisine: ['Cakes', 'Bread', 'Coffee', 'Donuts', 'Drinks'],
+    servesCuisine: ['Cakes', 'Coffee', 'Donuts', 'Drinks'],
   }
 }
 
@@ -105,7 +113,6 @@ export function productJsonLd(product: ShopProduct, url: string, origin = ''): R
 
 function offerCount(product: ShopProduct): number {
   if (product.category === 'donuts') return product.boxSizes.length
-  if (product.category === 'bread') return product.packSizes.length
   return product.sizes.length
 }
 

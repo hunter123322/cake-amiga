@@ -35,7 +35,7 @@ const previewGeom: TierGeometry = {
 <template>
   <div class="space-y-5">
     <section class="rounded-2xl bg-white p-4 shadow-sm">
-      <h3 class="text-sm font-semibold">Top design</h3>
+      <h2 class="text-sm font-semibold">Top design</h2>
       <p class="mt-0.5 text-xs text-slate-400">{{ definition.blurb }}</p>
       <div class="mt-2">
         <SwipeCarousel

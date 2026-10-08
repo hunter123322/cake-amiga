@@ -11,7 +11,7 @@ const flavor = computed(() => getFlavor(props.tier.flavorId))
 <template>
   <div class="space-y-4 rounded-2xl bg-white p-4 shadow-sm">
     <div class="flex items-center justify-between">
-      <h3 class="text-sm font-semibold">Editing the highlighted tier</h3>
+      <h2 class="text-sm font-semibold">Editing the highlighted tier</h2>
       <span
         class="rounded-full px-2.5 py-0.5 text-xs font-medium text-slate-600"
         :style="{ background: flavor.cream }"

@@ -7,10 +7,11 @@ const { pushToast } = useToasts()
 const { playTap, toggleSound, soundEnabled } = useSound()
 const { copyShareLink } = useShareLink()
 
-useSeoMeta({
+useShopSeo({
   title: 'Cake Builder — Design Your Dream Cake | Cake Amiga',
   description:
     'Build a custom cake tier by tier — size, flavour, coating, side design, topper and extras — with a live preview, instant pricing and a shareable link to send us.',
+  path: '/cake-builder',
   robots: 'index, follow',
 })
 

@@ -49,9 +49,9 @@ const promises = [
 ]
 
 useShopSeo({
-  title: 'Cake Amiga — Cakes, Bread, Coffee & Donuts in Bacacay, Albay',
+  title: 'Cake Amiga — Cakes, Coffee & Donuts in Bacacay, Albay',
   description:
-    'A bakery and café in Bacacay, Albay. Order celebration cakes, fresh bread, donuts, coffee and drinks for pickup or delivery within 10 km. Build your own cake online.',
+    'A bakery and café in Bacacay, Albay. Order celebration cakes, donuts, coffee and drinks for pickup or delivery within 10 km. Build your own cake online.',
   path: '/',
   image: CATEGORIES[0]?.cover,
   jsonLd: [
@@ -141,7 +141,7 @@ useShopSeo({
 
         <div class="lg:col-start-1 lg:row-start-2">
           <p class="text-sm leading-relaxed text-slate-600 lg:text-base">
-            Also bread, doughnuts, coffee and cold drinks. Order by message — pickup in
+            Also doughnuts, coffee and cold drinks. Order by message — pickup in
             {{ SHOP_INFO.address.city }} or delivery within 10 km.
           </p>
           <ul class="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
@@ -151,7 +151,7 @@ useShopSeo({
             </li>
             <li class="flex items-center gap-1.5">
               <UiIcon name="clock" class="h-3.5 w-3.5 text-emerald-600" />
-              Same-day bread & donuts
+              Same-day donuts & drinks
             </li>
             <li class="flex items-center gap-1.5">
               <UiIcon name="map-pin" class="h-3.5 w-3.5 text-emerald-600" />
@@ -164,8 +164,8 @@ useShopSeo({
 
     <section aria-labelledby="categories-heading" class="mx-auto w-full max-w-7xl px-4 pt-6 lg:px-8 lg:pt-12">
       <h2 id="categories-heading" class="text-lg font-extrabold tracking-[-0.02em] lg:text-xl">What we make</h2>
-      <p class="mt-1 text-sm text-slate-500">Five lists, updated whenever the menu changes.</p>
-      <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      <p class="mt-1 text-sm text-slate-500">Four lists, updated whenever the menu changes.</p>
+      <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <li v-for="tile in categoryTiles" :key="tile.slug">
           <NuxtLink
             :to="`/${tile.slug}`"

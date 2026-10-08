@@ -11,7 +11,7 @@ const faqs = [
   },
   {
     q: 'Do you deliver outside Bacacay?',
-    a: 'We deliver within about 10 km: Bacacay, Malinao, Sto. Domingo and parts of Legazpi. Beyond that we can meet you at a landmark along the road.',
+    a: 'We deliver within about 30 km: Bacacay, Malinao, Sto. Domingo and parts of Legazpi. Beyond that we can meet you at a landmark along the road.',
   },
   {
     q: 'Can I pay online?',
@@ -33,7 +33,7 @@ const channels = [
 useShopSeo({
   title: 'Contact Cake Amiga — Bacacay, Albay',
   description:
-    'Contact us in Bacacay, Albay: Messenger, Viber, phone and e-mail, opening hours, pickup address and delivery coverage within 10 km. Order cakes, bread, donuts and coffee.',
+    'Contact us in Bacacay, Albay: Messenger, Viber, phone and e-mail, opening hours, pickup address and delivery coverage within 10 km. Order cakes, donuts and coffee.',
   path: '/contact',
   jsonLd: [
     {

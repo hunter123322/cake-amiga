@@ -4,16 +4,16 @@ import { SHOP_INFO, SHOP_ADDRESS_LINE } from '~/data/shop/info'
 definePageMeta({ layout: 'public' })
 
 const steps = [
-  { icon: 'search', title: 'Pick your list', copy: 'Cakes, drinks, coffee, donuts or bread — each page keeps its own prices and lead times.' },
+  { icon: 'search', title: 'Pick your list', copy: 'Cakes, drinks, coffee or donuts — each page keeps its own prices and lead times.' },
   { icon: 'chat', title: 'Send the order', copy: 'Every card opens Messenger or Viber with the item and price already written in the message.' },
-  { icon: 'clock', title: 'We confirm the time', copy: 'Cakes need three days; drinks, bread and donuts are usually same-day.' },
+  { icon: 'clock', title: 'We confirm the time', copy: 'Cakes need three days; drinks and donuts are usually same-day.' },
   { icon: 'map-pin', title: 'Pickup or delivery', copy: `Collect in ${SHOP_INFO.address.city}, or we deliver within 10 km for ₱80 and up.` },
 ]
 
 useShopSeo({
   title: 'About Cake Amiga — Bakery & Café in Bacacay, Albay',
   description:
-    'A small bakery and café in Bacacay, Albay. We bake cakes to order, pandesal twice a day, doughnuts fresh, and brew coffee from locally roasted Bicol beans.',
+    'A small bakery and café in Bacacay, Albay. We bake celebration cakes to order, fry doughnuts fresh every morning, and brew coffee from locally roasted Bicol beans.',
   path: '/about',
 })
 </script>

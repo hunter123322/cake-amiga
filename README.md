@@ -1,7 +1,7 @@
 # Cake Amiga — shop + cake builder
 
-A Nuxt 4 site for a bakery and café in **Bacacay, Albay**: five shop directory pages (cakes,
-drinks, coffee, donuts, bread) plus the original **2D cake configurator**.
+A Nuxt 4 site for a bakery and café in **Bacacay, Albay**: four shop directory pages (cakes,
+drinks, coffee, donuts) plus the original **2D cake configurator**.
 
 Built with **Nuxt 4**, **Tailwind CSS**, **Pinia** and **@nuxt/image**. Product photography lives in
 `public/img` (authored 4:5 portrait); every cake-builder visual is still an inline SVG generated
@@ -12,9 +12,9 @@ procedurally in Vue components — no canvas, no 3D, no raster assets in the con
 | Route | What it is |
 |---|---|
 | `/` | Home: hero, category tiles, bestsellers, cake-builder band |
-| `/cakes`, `/drinks`, `/coffee`, `/donuts`, `/bread` | Category directories: search, sort, category-specific filters, 50-item cap, load-more |
+| `/cakes`, `/drinks`, `/coffee`, `/donuts` | Category directories: search, sort, category-specific filters, 50-item cap, crawlable “load more” link (`?page=N`) |
 | `/{category}/{slug}` | Product detail: 4:5 hero, variant table, prefilled order links, related items |
-| `/menu` | All five lists in one page with jump links |
+| `/menu` | All four lists in one page with jump links |
 | `/about`, `/contact` | Story, hours, address, map, Messenger / Viber / phone |
 | `/cake-builder` | The cake configurator (own full-screen layout) |
 
@@ -28,10 +28,11 @@ item, size and price already written into the message.
   row, explicit width/height (no layout shift) and WebP variants from IPX (a 320×400 card image is
   ~12 KB instead of the ~700 KB source).
 - **Filtering** — search, sort (featured / newest / price / name), per-category facet dropdowns
-  (occasion, flavour, size, brew, strength, glaze, filling, bread type) and price pills. The whole
-  filter state round-trips through the query string, so any view is shareable.
-- **Catalogue data** — `app/data/shop/*.ts` **is** the catalogue (cakes 50, drinks 20, coffee 15,
-  donuts 15, bread 15): plain TypeScript, no database and no CMS. Editing a product means editing
+  (occasion, flavour, size, brew, strength, glaze, filling) and price pills. The whole
+  filter state round-trips through the query string, and it is applied during SSR, so a shared or
+  crawled `?page=2` / `?q=…` link renders the same list the visitor sees.
+- **Catalogue data** — `app/data/shop/*.ts` **is** the catalogue (cakes 50, drinks 12, coffee 9,
+  donuts 15): plain TypeScript, no database and no CMS. Editing a product means editing
   those files; prices, sizes and copy ship with the code. The 50-item cap is a guard rail that warns
   in dev when a category grows past it. Favourites are the only thing kept in `localStorage`.
 - **Photos missing** — items without an image render a labelled “photo coming soon” tile (also in
@@ -42,7 +43,8 @@ item, size and price already written into the message.
   in the JSON-LD.
 - **SEO** — per-page title/description/OG/canonical, JSON-LD (`Bakery` from the layout, `Product`
   with an `AggregateOffer` and `BreadcrumbList` per item, `FAQPage` on contact), plus
-  `/sitemap.xml` (generated from the hardcoded catalogue) and `robots.txt`.
+  `/sitemap.xml` (generated from the hardcoded catalogue) and `/robots.txt` — both server routes, so
+  their URLs are built from the request origin and XML values are escaped.
 - **First screen (mobile)** — the landing view leads with the location + live “open now / closed”
   badge, one front-loaded headline, a real price/lead-time line, **one** primary CTA
   (Messenger) and the hero photograph — then the tagline and trust chips. Nothing above the fold is
@@ -90,12 +92,12 @@ app/
     svg/         SvgDefs + procedural assets: textures/, sides/, toppers/, addons/
   composables/   useCatalogView, useProductDisplay, useInquiry, useShopSeo, useOpenStatus, useCakeGeometry, ...
   stores/        catalog.ts (filters + favourites over the hardcoded catalogue), cake.ts (builder state)
-  data/shop/     info, categories, imageLibrary, cakes, drinks, coffee, donuts, bread
+  data/shop/     info, categories, imageLibrary, cakes, drinks, coffee, donuts
   data/          builder data: flavors, coatings, side designs, top designs, add-ons, presets
   types/         shared TypeScript types (shop.ts, cake.ts)
 server/
-  routes/        sitemap.xml.ts
-public/img/      cake/ (49 × 4:5), donut/ (3), cover/ (1)
+  routes/        sitemap.xml.ts, robots.txt.ts
+public/img/      cake/ (49), donut/ (15), drink/ (12), coffee/ (9) — all 4:5 portrait
 ```
 
 ## Rendering model (builder)
@@ -131,8 +133,12 @@ Research summary for hooking a first-time mobile visitor — sources are the usu
   is the artwork already in `public/` (`android-chrome-192x192.png`, optimised through IPX), and the
   favicon/apple-touch/manifest links in `nuxt.config.ts` point at the same set.
 - **Store details** (phone, Messenger, Viber, e-mail, hours, address, map link) live in
-  `app/data/shop/info.ts`. The shipped values are non-routable placeholders — replace them before
-  launch, along with the domain in `robots.txt` and `nuxt.config.ts`.
+  `app/data/shop/info.ts`. Replace the Messenger handle and the social URLs before launch; the
+  phone, e-mail, address and coordinates are already the real ones. `robots.txt` needs no domain
+  edit — it is generated from the request origin.
+- **SEO validation** — `skill/SEO-VALIDATION.md` is the frozen spec for the three-layer check
+  (static, HTTP, rendered DOM). Run it against a production build before launch; the report from the
+  last run is kept in the session artifacts, not the repo.
 - **Photo ↔ name pairing** lives in `app/data/shop/cakes.ts`: each product is named after its photo
   file, one-for-one with `public/img/cake`. `ProductCard.vue` holds the same titles (and the
   best-seller list) as hardcoded strings, so rename both when a photo changes.

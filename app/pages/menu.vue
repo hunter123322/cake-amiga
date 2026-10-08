@@ -21,9 +21,9 @@ const sections = computed(() =>
 )
 
 useShopSeo({
-  title: 'Full Menu — Cakes, Drinks, Coffee, Donuts & Bread | Cake Amiga',
+  title: 'Full Menu — Cakes, Drinks, Coffee & Donuts | Cake Amiga',
   description:
-    'Everything we bake and brew in Bacacay, Albay in one place: celebration cakes, milk tea and fruit drinks, espresso, doughnuts and fresh bread, with prices in pesos.',
+    'Everything we bake and brew in Bacacay, Albay in one place: celebration cakes, milk tea and fruit drinks, espresso and doughnuts, with prices in pesos.',
   path: '/menu',
 })
 </script>
@@ -62,7 +62,7 @@ useShopSeo({
     </nav>
 
     <section
-      v-for="section in sections"
+      v-for="(section, sectionIndex) in sections"
       :id="section.category.slug"
       :key="section.category.slug"
       class="scroll-mt-20 pt-12 lg:pt-16"
@@ -83,8 +83,8 @@ useShopSeo({
       </div>
 
       <ul v-if="section.preview.length" class="mt-5 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
-        <li v-for="product in section.preview" :key="product.id" class="flex">
-          <ProductCard :product="product" class="w-full" />
+        <li v-for="(product, index) in section.preview" :key="product.id" class="flex">
+          <ProductCard :product="product" :priority="sectionIndex === 0 && index < 4" class="w-full" />
         </li>
       </ul>
       <EmptyState

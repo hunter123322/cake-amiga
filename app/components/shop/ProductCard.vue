@@ -2,7 +2,10 @@
 import type { CategorySlug, ShopProduct } from '~/types/shop'
 import { CATEGORY_BY_SLUG } from '~/data/shop/categories'
 
-const props = withDefaults(defineProps<{ product: ShopProduct; priority?: boolean }>(), { priority: false })
+const props = withDefaults(
+  defineProps<{ product: ShopProduct; priority?: boolean; headingLevel?: 'h2' | 'h3' }>(),
+  { priority: false, headingLevel: 'h3' },
+)
 
 /** Cake titles are hardcoded: each string matches the photograph it sits under. */
 const CAKE_TITLES: Record<string, string> = {
@@ -142,9 +145,9 @@ onBeforeUnmount(() => observer?.disconnect())
     </button>
 
     <div class="flex flex-1 flex-col gap-1.5 p-3.5">
-      <h3 class="text-[15px] font-semibold leading-snug tracking-[-0.01em] text-slate-900">
+      <component :is="headingLevel" class="text-[15px] font-semibold leading-snug tracking-[-0.01em] text-slate-900">
         <NuxtLink :to="href" class="transition hover:text-amber-700">{{ title }}</NuxtLink>
-      </h3>
+      </component>
       <p class="line-clamp-2 text-xs leading-relaxed text-slate-500">{{ summaryLine(product) }}</p>
       <ul v-if="cardChips.length" class="flex flex-wrap gap-1 pt-0.5">
         <li v-for="chip in cardChips" :key="chip"

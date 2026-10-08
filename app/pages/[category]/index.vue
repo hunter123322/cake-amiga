@@ -19,6 +19,12 @@ const meta = CATEGORY_BY_SLUG[slug]
 const view = useCatalogView(category)
 const store = useCatalogStore()
 
+/** The next page is a URL, so "Load more" is a link a crawler can follow. */
+const moreTo = computed(() => ({
+  path: route.path,
+  query: { ...route.query, page: String(view.filters.value.page + 1) },
+}))
+
 const itemCount = computed(() => store.byCategory(slug).length)
 
 /** Straight from the hardcoded catalogue, so the hero can state a real price. */
@@ -119,9 +125,9 @@ useShopSeo({
           :items="view.items.value"
           :total="view.total.value"
           :has-more="view.hasMore.value"
+          :more-to="moreTo"
           :category="slug"
           :is-filtered="view.isFiltered.value"
-          @load-more="view.loadMore"
           @reset="view.resetAll"
         />
       </div>

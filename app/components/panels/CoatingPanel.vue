@@ -16,7 +16,7 @@ function setFinish(id: string) {
 <template>
   <div class="space-y-5">
     <section class="rounded-2xl bg-white p-4 shadow-sm">
-      <h3 class="text-sm font-semibold">Finish</h3>
+      <h2 class="text-sm font-semibold">Finish</h2>
       <p class="mt-0.5 text-xs text-slate-400">{{ finish.blurb }}</p>
       <div class="mt-2">
         <SwipeCarousel

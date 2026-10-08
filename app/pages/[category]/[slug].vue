@@ -130,7 +130,7 @@ async function onShare() {
 
         <section aria-labelledby="variants-heading" class="rounded-3xl bg-white p-4 ring-1 ring-slate-900/5 lg:p-5">
           <h2 id="variants-heading" class="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
-            {{ item.category === 'donuts' ? 'Boxes' : item.category === 'bread' ? 'Pack sizes' : 'Sizes & prices' }}
+            {{ item.category === 'donuts' ? 'Boxes' : 'Sizes & prices' }}
           </h2>
           <table class="mt-3 w-full text-sm">
             <tbody>

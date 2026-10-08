@@ -11,7 +11,7 @@ const orderedTiers = computed(() => [...store.tiers].reverse())
 <template>
   <div class="space-y-5">
     <section>
-      <h3 class="text-sm font-semibold text-slate-700">Start from a template</h3>
+      <h2 class="text-sm font-semibold text-slate-700">Start from a template</h2>
       <div class="-mx-1 mt-2 flex gap-2 overflow-x-auto px-1 pb-2">
         <button
           v-for="preset in PRESETS"
@@ -27,7 +27,7 @@ const orderedTiers = computed(() => [...store.tiers].reverse())
 
     <section class="rounded-2xl bg-white p-4 shadow-sm">
       <div class="flex items-center justify-between">
-        <h3 class="text-sm font-semibold">Tiers</h3>
+        <h2 class="text-sm font-semibold">Tiers</h2>
         <div class="flex items-center gap-2">
           <button
             type="button"

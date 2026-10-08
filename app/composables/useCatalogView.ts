@@ -91,6 +91,10 @@ export function useCatalogView(category: Ref<CategorySlug> | ComputedRef<Categor
     return Number.isFinite(n) ? n : 1
   }
 
+  // Applied during setup, not onMounted, so the server renders the list the URL asks for:
+  // `?page=2` (and every filter link) is then real content for crawlers, not a client-only view.
+  applyQuery({ ...route.query, saved: undefined })
+
   onMounted(() => {
     store.hydrate()
     applyQuery(route.query as Record<string, unknown>)
@@ -119,10 +123,6 @@ export function useCatalogView(category: Ref<CategorySlug> | ComputedRef<Categor
   watch(category, () => {
     store.resetFilters()
   })
-
-  function loadMore() {
-    store.setFilter('page', filters.value.page + 1)
-  }
 
   function search(value: string) {
     store.setFilter('q', value)
@@ -172,7 +172,6 @@ export function useCatalogView(category: Ref<CategorySlug> | ComputedRef<Categor
     isFiltered,
     facets,
     pricePills,
-    loadMore,
     search,
     setMaxPrice,
     setSort,

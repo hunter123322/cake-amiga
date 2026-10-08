@@ -1,4 +1,4 @@
-export const CATEGORY_SLUGS = ['cakes', 'drinks', 'coffee', 'donuts', 'bread'] as const
+export const CATEGORY_SLUGS = ['cakes', 'drinks', 'coffee', 'donuts'] as const
 
 export type CategorySlug = (typeof CATEGORY_SLUGS)[number]
 
@@ -7,7 +7,6 @@ export type ProductBadge = 'bestseller' | 'new' | 'limited' | 'seasonal'
 export type DrinkType = 'milk-tea' | 'fruit' | 'soda' | 'juice' | 'shake'
 export type BrewType = 'hot' | 'iced' | 'frappe'
 export type Strength = 'single' | 'double' | 'triple'
-export type BreadType = 'loaf' | 'bun' | 'sweet' | 'savory'
 
 export interface SizeOption {
   label: string
@@ -58,20 +57,13 @@ export interface Donut extends BaseProduct {
   boxSizes: { count: number; price: number }[]
 }
 
-export interface Bread extends BaseProduct {
-  category: 'bread'
-  breadType: BreadType
-  weight?: string
-  packSizes: { label: string; price: number }[]
-}
-
-export type ShopProduct = Cake | Drink | Coffee | Donut | Bread
+export type ShopProduct = Cake | Drink | Coffee | Donut
 
 export type SortKey = 'featured' | 'newest' | 'price-asc' | 'price-desc' | 'name'
 
 export interface FacetRef {
   /** field on the product that the facet reads */
-  field: 'occasion' | 'flavors' | 'sizes' | 'drinkType' | 'brewType' | 'strength' | 'filling' | 'glaze' | 'breadType'
+  field: 'occasion' | 'flavors' | 'sizes' | 'drinkType' | 'brewType' | 'strength' | 'filling' | 'glaze'
   label: string
 }
 

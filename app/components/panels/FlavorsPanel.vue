@@ -22,10 +22,10 @@ function setFlavor(tierId: string, flavorId: string) {
       class="rounded-2xl bg-white p-3 shadow-sm"
       :class="store.selectedTierId === tier.id ? 'ring-2 ring-amber-300' : ''"
     >
-      <h3 class="mb-1 flex items-center justify-between text-sm font-semibold">
+      <h2 class="mb-1 flex items-center justify-between text-sm font-semibold">
         Tier {{ store.tiers.length - i }}
         <span class="text-xs font-normal text-slate-400">{{ tier.diameterIn }}" wide</span>
-      </h3>
+      </h2>
       <SwipeCarousel
         :items="FLAVORS"
         :model-value="tier.flavorId"

@@ -37,8 +37,6 @@ export function useProductDisplay() {
         const parts = [product.glaze ? `${product.glaze} glaze` : null, product.filling ? `${product.filling} filled` : null]
         return parts.filter(Boolean).join(' · ') || 'Sugar rolled'
       }
-      case 'bread':
-        return product.packSizes.map((p) => p.label).join(' · ')
       default:
         return ''
     }
@@ -55,8 +53,6 @@ export function useProductDisplay() {
         return [product.brewType, `${product.strength} shot`]
       case 'donuts':
         return [product.glaze ?? 'Sugar', ...(product.filling ? [product.filling] : [])]
-      case 'bread':
-        return [product.breadType, ...(product.weight ? [product.weight] : [])]
       default:
         return []
     }
@@ -70,9 +66,6 @@ export function useProductDisplay() {
         detail: box.count === 1 ? 'One piece' : `${box.count} pieces, boxed`,
         price: peso(box.price),
       }))
-    }
-    if (product.category === 'bread') {
-      return product.packSizes.map((pack) => ({ label: pack.label, detail: product.weight ?? 'Baked fresh daily', price: peso(pack.price) }))
     }
     return product.sizes.map((size) => ({
       label: size.label,

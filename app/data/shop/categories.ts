@@ -80,22 +80,6 @@ export const CATEGORIES: CategoryMeta[] = [
     leadNote: 'Same day',
     orderNote: 'Donuts are fried daily — same-day pickup, boxes need 2 hours notice.',
   },
-  {
-    slug: 'bread',
-    label: 'Bread',
-    icon: 'bread',
-    h1: 'Bread from the oven',
-    tagline: 'Out of the oven from 6:00 AM',
-    intro:
-      'Loaves, buns and Bicol favourites, baked before sunrise every morning.',
-    seoTitle: 'Fresh Bread & Loaves in Bacacay, Albay | Cake Amiga',
-    seoDescription:
-      'Fresh bread baked daily in Bacacay, Albay from ₱65: sandwich loaves, pandesal, pan de coco, cheese bread and Spanish bread.',
-    facets: [{ field: 'breadType', label: 'Type' }],
-    priceSteps: [80, 150, 250],
-    leadNote: 'Daily from 6 AM',
-    orderNote: 'Bread is baked daily — reserve a loaf before 8:00 PM for next-morning pickup.',
-  },
 ]
 
 export const CATEGORY_BY_SLUG = Object.fromEntries(CATEGORIES.map((c) => [c.slug, c])) as Record<
@@ -106,3 +90,4 @@ export const CATEGORY_BY_SLUG = Object.fromEntries(CATEGORIES.map((c) => [c.slug
 export function isCategorySlug(value: string): value is CategorySlug {
   return Object.prototype.hasOwnProperty.call(CATEGORY_BY_SLUG, value)
 }
+ 

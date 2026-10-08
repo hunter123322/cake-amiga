@@ -5,6 +5,16 @@ import { ALL_SEED_PRODUCTS } from '~/data/shop'
  * Sitemap for the public shop. Admin edits live in the browser, so the sitemap is
  * generated from the shipped seed catalogue.
  */
+/** A photo named `crown&fruit…` is enough to make the whole document unparseable, so escape every text value. */
+function xmlEscape(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
 export default defineEventHandler((event) => {
   const origin = getRequestURL(event).origin
   const now = new Date().toISOString().slice(0, 10)
@@ -34,8 +44,8 @@ export default defineEventHandler((event) => {
 
   const urls = entries
     .map((entry) => {
-      const loc = `${origin}${entry.path}`
-      const image = 'image' in entry && entry.image ? `\n    <image:image><image:loc>${origin}${entry.image}</image:loc></image:image>` : ''
+      const loc = xmlEscape(`${origin}${entry.path}`)
+      const image = 'image' in entry && entry.image ? `\n    <image:image><image:loc>${xmlEscape(`${origin}${entry.image}`)}</image:loc></image:image>` : ''
       return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${now}</lastmod>\n    <changefreq>${entry.changefreq}</changefreq>\n    <priority>${entry.priority}</priority>${image}\n  </url>`
     })
     .join('\n')

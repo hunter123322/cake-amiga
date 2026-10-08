@@ -28,12 +28,12 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'en-PH' },
-      title: 'Cake Amiga — Cakes, Bread, Coffee & Donuts in Bacacay, Albay',
+      title: 'Cake Amiga — Cakes, Coffee & Donuts in Bacacay, Albay',
       meta: [
         {
           name: 'description',
           content:
-            'A bakery and café in Bacacay, Albay. Order cakes, bread, donuts, coffee and drinks for pickup or delivery within 10 km — or build your own cake online.',
+            'A bakery and café in Bacacay, Albay. Order cakes, donuts, coffee and drinks for pickup or delivery within 10 km — or build your own cake online.',
         },
         { name: 'theme-color', content: '#fffbeb' },
       ],

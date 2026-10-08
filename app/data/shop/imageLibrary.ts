@@ -58,10 +58,48 @@ export const IMAGE_LIBRARY: Record<string, string[]> = {
     '/img/cake/tuxedo_60th_bdayCake.webp',
     '/img/cake/wedding_bride_cake.webp',
   ],
-  donuts: ['/img/donut/donut1.webp', '/img/donut/donut2.webp'],
-  drinks: ['/img/drink/drink1.webp', '/img/drink/drink2.webp'],
-  coffee: [],
-  bread: [],
+  donuts: [
+    '/img/donut/donut1.webp',
+    '/img/donut/donut2.webp',
+    '/img/donut/donut3.webp',
+    '/img/donut/donut4.webp',
+    '/img/donut/donut5.webp',
+    '/img/donut/donut6.webp',
+    '/img/donut/donut7.webp',
+    '/img/donut/donut8.webp',
+    '/img/donut/donut9.webp',
+    '/img/donut/donut10.webp',
+    '/img/donut/donut11.webp',
+    '/img/donut/donut12.webp',
+    '/img/donut/donut13.webp',
+    '/img/donut/donut14.webp',
+    '/img/donut/donut15.webp'
+  ],
+  drinks: [
+    '/img/drink/drink1.webp',
+    '/img/drink/drink2.webp',
+    '/img/drink/drink3.webp',
+    '/img/drink/drink4.webp',
+    '/img/drink/drink5.webp',
+    '/img/drink/drink6.webp',
+    '/img/drink/drink7.webp',
+    '/img/drink/drink8.webp',
+    '/img/drink/drink9.webp',
+    '/img/drink/drink10.webp',
+    '/img/drink/drink11.webp',
+    '/img/drink/drink12.webp'
+  ],
+  coffee: [
+    '/img/coffee/coffee1.webp',
+    '/img/coffee/coffee2.webp',
+    '/img/coffee/coffee3.webp',
+    '/img/coffee/coffee4.webp',
+    '/img/coffee/coffee5.webp',
+    '/img/coffee/coffee6.webp',
+    '/img/coffee/coffee7.webp',
+    '/img/coffee/coffee8.webp',
+    '/img/coffee/coffee9.webp'
+  ],
 }
 
 export const IMAGE_LIBRARY_ALL = Object.values(IMAGE_LIBRARY).flat()

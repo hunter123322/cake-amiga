@@ -54,7 +54,7 @@ function addToCart() {
     </section>
 
     <section class="rounded-2xl bg-white p-4 shadow-sm">
-      <h3 class="text-sm font-semibold">Your cake</h3>
+      <h2 class="text-sm font-semibold">Your cake</h2>
       <dl class="mt-2 space-y-2 text-sm">
         <div class="flex justify-between gap-4">
           <dt class="shrink-0 text-slate-400">Tiers</dt>
@@ -98,7 +98,7 @@ function addToCart() {
     </section>
 
     <section class="rounded-2xl bg-white p-4 shadow-sm">
-      <h3 class="text-sm font-semibold">Delivery</h3>
+      <h2 class="text-sm font-semibold">Delivery</h2>
       <div class="mt-2 flex flex-wrap items-center gap-2">
         <input
           v-model="deliveryDate"
@@ -126,7 +126,7 @@ function addToCart() {
     </section>
 
     <section class="rounded-2xl bg-white p-4 shadow-sm">
-      <h3 class="text-sm font-semibold">Price breakdown</h3>
+      <h2 class="text-sm font-semibold">Price breakdown</h2>
       <ul class="mt-2">
         <li
           v-for="line in store.pricing.lines"
