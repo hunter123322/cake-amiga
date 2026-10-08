@@ -143,5 +143,3 @@ Research summary for hooking a first-time mobile visitor — sources are the usu
     `"getActivePinia()" was called but there was no active Pinia`.
 
   Both can be removed once the upstream issues are fixed.
-#   c a k e - a m i g a  
- 
